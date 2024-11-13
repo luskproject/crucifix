@@ -7,7 +7,6 @@ Just run this command inside your project directory:
 npm i crucifix
 ```
 
-
 ### Usage (CommonJS):
 ```js
 // Importing the library
