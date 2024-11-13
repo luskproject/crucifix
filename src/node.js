@@ -42,7 +42,7 @@ module.exports = class CrucifixNode {
     }
 
     remove () {
-        if ( this.index )
+        if ( typeof this.index !== undefined )
             delete this.parent[ this.key ][ this.index ];
         delete this.parent[ this.key ];
     }
@@ -56,9 +56,7 @@ module.exports = class CrucifixNode {
     }
 
     replace ( obj ) {
-        if ( obj instanceof Array ) {
-            if ( typeof this.index === 'undefined' )
-                throw new Error( 'This object cannot be turned into an array since the parent property is not an array' );
+        if ( typeof this.index !== undefined ) {
             return this.parent[ this.key ][ this.index ] = obj;
         }
         return this.parent[ this.key ] = obj;
