@@ -27,8 +27,18 @@ function deepModify ( source, target ) {
     return target;
 }
 
-function clone ( obj ) {
-    return Object.assign( Object.create( obj ), Object.assign( {}, obj ) );
+function clone ( object ) {
+	if ( !object )
+		return object;
+    if ( Array.isArray( object ) )
+        return [ ...object ].map( e => clone( e ) );
+    if ( typeof object !== "object" )
+        return object;
+	return Object.fromEntries(
+		Object.entries( object ).map(
+            ( [ key, value ] ) => [ key, clone( value ) ]
+        )
+	);
 }
 
 module.exports = {
