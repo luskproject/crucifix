@@ -23,12 +23,13 @@ module.exports = class CrucifixNode {
     constructor ( parent, key, ancestors, index = null ) {
         this.parent = parent;
         this.key = key;
-        this.index = index;
+        if ( index !== null && typeof index !== 'undefined' )
+            this.index = index;
         this.__ancestors = ancestors;
     }
 
     [ privateSym ] () {
-        if ( typeof this.index !== undefined )
+        if ( typeof this.index !== 'undefined' )
             return { $: this.parent[ this.key ][ this.index ] };
         return { $: this.parent[ this.key ] };
     }
