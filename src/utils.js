@@ -27,18 +27,29 @@ function deepModify ( source, target ) {
     return target;
 }
 
+// This is an old clone implementation which is
+// pretty slow. It will be replaced by a JSON parsing
+// which is essentially faster than this implementation
+// below.
+//
+// function clone ( object ) {
+// 	if ( !object )
+// 		return object;
+//     if ( Array.isArray( object ) )
+//         return [ ...object ].map( e => clone( e ) );
+//     if ( typeof object !== "object" )
+//         return object;
+// 	return Object.fromEntries(
+// 		Object.entries( object ).map(
+//             ( [ key, value ] ) => [ key, clone( value ) ]
+//         )
+// 	);
+// }
+//
+// Node.js... What is wrong with you :sob:
+
 function clone ( object ) {
-	if ( !object )
-		return object;
-    if ( Array.isArray( object ) )
-        return [ ...object ].map( e => clone( e ) );
-    if ( typeof object !== "object" )
-        return object;
-	return Object.fromEntries(
-		Object.entries( object ).map(
-            ( [ key, value ] ) => [ key, clone( value ) ]
-        )
-	);
+	return JSON.parse( JSON.stringify( object ) );
 }
 
 module.exports = {
