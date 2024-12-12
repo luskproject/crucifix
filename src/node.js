@@ -43,8 +43,10 @@ module.exports = class CrucifixNode {
     }
 
     remove () {
-        if ( typeof this.index !== 'undefined' )
+        if ( typeof this.index !== 'undefined' ) {
             delete this.parent[ this.key ][ this.index ];
+            this.shouldFilter = true;
+        }
         delete this.parent[ this.key ];
     }
 
@@ -58,6 +60,7 @@ module.exports = class CrucifixNode {
 
     replace ( obj ) {
         if ( typeof this.index !== 'undefined' ) {
+            this.shouldFilter = Array.isArray( obj ) || this.shouldFilter;
             return this.parent[ this.key ][ this.index ] = obj;
         }
         return this.parent[ this.key ] = obj;

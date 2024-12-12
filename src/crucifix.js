@@ -47,10 +47,11 @@ class CrucifixInternal {
 		const ancestorList = parent ? [ parent ].concat( ancestors ) : [];
 
 		// Perform a callback if possible
+		let crucifixNode;
 		( this.callbackList[ node.type ] || this.callback )?.(
 			node, !parentProperty
 				? null
-				: new CrucifixNode(
+				: crucifixNode = new CrucifixNode(
 					parent,
 					parentProperty,
 					ancestorList,
