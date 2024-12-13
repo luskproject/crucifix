@@ -45,7 +45,7 @@ module.exports = class CrucifixNode {
     remove () {
         if ( typeof this.index !== 'undefined' ) {
             delete this.parent[ this.key ][ this.index ];
-            this.shouldFilter = true;
+            return this.shouldFilter = true;
         }
         delete this.parent[ this.key ];
     }
