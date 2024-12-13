@@ -75,12 +75,15 @@ class CrucifixInternal {
 
 			// Iterate through the property itself
 			// and flatten it
+			let shouldFilter = false;
 			node[ property ].forEach(
 				( subNode, subIndex ) =>
-					this.traverse( subNode, node, property, ancestorList, subIndex )
+					shouldFilter = this.traverse( subNode, node, property, ancestorList, subIndex ) || shouldFilter
 			);
-			node[ property ] = node[ property ].flat( Infinity );
+			if ( shouldFilter )
+				node[ property ] = node[ property ].flat( Infinity ).filter( e => e );
 		} );
+		return crucifixNode?.shouldFilter;
 	}
 }
 
