@@ -32,9 +32,11 @@ function clone(obj) {
     for ( key in obj ) {
         if ( obj.hasOwnProperty( key ) ) {
             val = obj[ key ];
-            if ( Array.isArray( val ) && val !== null )
+            if ( val === null || typeof val === 'undefined' )
+                return val;
+            if ( Array.isArray( val ) )
                 ret[ key ] = val.map( clone );
-            else if ( typeof val === 'object' && val !== null )
+            else if ( typeof val === 'object' )
                 ret[ key ] = clone( val );
             else ret[ key ] = val;
         }
