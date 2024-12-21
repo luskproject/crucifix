@@ -47,10 +47,9 @@ class CrucifixInternal {
 		const ancestorList = parent ? [ parent ].concat( ancestors ) : [];
 
 		// Perform a callback if possible
-		let crucifixNode;
+		let propmanager = null;
 		const call = this.callbackList[ node.type ] || this.callback;
 		if ( call ) {
-			let propmanager = null;
 			if ( parentProperty ) propmanager = new CrucifixNode(
 				parent,
 				parentProperty,
@@ -86,7 +85,7 @@ class CrucifixInternal {
 			if ( shouldFilter )
 				node[ property ] = node[ property ].flat( Infinity ).filter( e => e );
 		}
-		return crucifixNode?.shouldFilter;
+		return propmanager?.shouldFilter;
 	}
 }
 
