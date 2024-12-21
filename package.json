@@ -1,27 +1,27 @@
 {
-    "name": "crucifix",
-    "version": null,
-    "description": "Mozilla Specification JavaScript/ES AST Traversal and Modification Unit, as god intended.",
-    "main": "src/crucifix.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/luskproject/crucifix.git"
-    },
-    "keywords": [
-        "traversal",
-        "traverse",
-        "mozilla-ast",
-        "javascript",
-        "ecmascript",
-        "mozilla-es"
-    ],
-    "author": "citrizon",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/luskproject/crucifix/issues"
-    },
-    "homepage": "https://github.com/luskproject/crucifix#readme"
+	"name": "crucifix",
+	"version": null,
+	"description": "Mozilla Specification JavaScript/ES AST Traversal and Modification Unit, as god intended.",
+	"main": "src/crucifix.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/luskproject/crucifix.git"
+	},
+	"keywords": [
+		"traversal",
+		"traverse",
+		"mozilla-ast",
+		"javascript",
+		"ecmascript",
+		"mozilla-es"
+	],
+	"author": "citrizon",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/luskproject/crucifix/issues"
+	},
+	"homepage": "https://github.com/luskproject/crucifix#readme"
 }

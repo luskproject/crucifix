@@ -48,8 +48,17 @@ function deepModify ( source, target ) {
 //
 // Node.js... What is wrong with you :sob:
 
-function clone ( object ) {
-	return JSON.parse( JSON.stringify( object ) );
+function clone(obj) {
+    var ret = {}, key, val;
+    for ( key in obj ) {
+        if ( obj.hasOwnProperty( key ) ) {
+            val = obj[ key ];
+            if ( typeof val === 'object' && val !== null )
+                ret[ key ] = clone( val );
+            else ret[ key ] = val;
+        }
+    }
+    return ret;
 }
 
 module.exports = {

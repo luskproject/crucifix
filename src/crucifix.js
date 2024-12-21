@@ -48,41 +48,44 @@ class CrucifixInternal {
 
 		// Perform a callback if possible
 		let crucifixNode;
-		( this.callbackList[ node.type ] || this.callback )?.(
-			node, !parentProperty
-				? null
-				: crucifixNode = new CrucifixNode(
-					parent,
-					parentProperty,
-					ancestorList,
-					propertyIndex
-				)
-		);
+		const call = this.callbackList[ node.type ] || this.callback;
+		if ( call ) {
+			let propmanager = null;
+			if ( parentProperty ) propmanager = new CrucifixNode(
+				parent,
+				parentProperty,
+				ancestorList,
+				propertyIndex
+			);
+			call( node, propmanager );
+		}
 
 		// Get traversable properties and traverse
 		// through them.
 		const traversables = visitorKeys[ node.type ];
 		if ( !traversables ) return false;
-		traversables.forEach( property => {
+		for ( const property of traversables ) {
 			// Check if the property exists in
 			// that node
 			if ( !node?.[ property ] )
-				return;
+				continue;
 
 			// Check if the property is NOT iterable
-			if ( !node[ property ]?.forEach )
-				return this.traverse( node[ property ], node, property, ancestorList );
+			if ( !node[ property ]?.forEach ) {
+				this.traverse( node[ property ], node, property, ancestorList );
+				continue;
+			}
 
 			// Iterate through the property itself
 			// and flatten it
 			let shouldFilter = false;
-			node[ property ].forEach(
-				( subNode, subIndex ) =>
-					shouldFilter = this.traverse( subNode, node, property, ancestorList, subIndex ) || shouldFilter
-			);
+			const prNode = node[ property ], prLength = prNode.length;
+			for ( let i = 0; i < prLength; ++i ) {
+				shouldFilter = this.traverse( prNode[ i ], node, property, ancestorList, i ) || shouldFilter
+			}
 			if ( shouldFilter )
 				node[ property ] = node[ property ].flat( Infinity ).filter( e => e );
-		} );
+		}
 		return crucifixNode?.shouldFilter;
 	}
 }
