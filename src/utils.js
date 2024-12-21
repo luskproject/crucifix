@@ -29,11 +29,11 @@ function deepModify ( source, target ) {
 
 function clone(obj) {
     var ret = {}, key, val;
+    if ( obj === null || typeof obj === 'undefined' )
+        return obj;
     for ( key in obj ) {
         if ( obj.hasOwnProperty( key ) ) {
             val = obj[ key ];
-            if ( val === null || typeof val === 'undefined' )
-                return val;
             if ( Array.isArray( val ) )
                 ret[ key ] = val.map( clone );
             else if ( typeof val === 'object' )
