@@ -1,6 +1,9 @@
 # Crucifix
 Mozilla Specification JavaScript/ES AST Traversal and Modification Unit, as god intended.
 
+> [!CAUTION]
+> This package is deprecated, switch to [Estige](https://github.com/citrizon/estige) instead
+
 ### Installation:
 Just run this command inside your project directory:
 ```
